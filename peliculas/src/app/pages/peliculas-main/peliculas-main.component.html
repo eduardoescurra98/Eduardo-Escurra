@@ -1,0 +1,56 @@
+<!-- Main Content -->
+<div class="container-fluid pt-2">
+    <div class="filter-container">
+      <mat-card class="filter-card">
+        <h3>Filtrar por:</h3>
+        <div class="d-flex flex-wrap justify-content-center gap-3 p-3">
+          <div class="filter-item col-12 col-md-4">
+            <mat-form-field appearance="outline" class="example-form-field-outline">
+              <mat-label>Pelicula</mat-label>
+              <input matInput type="text" [(ngModel)]="searchFilter.movie">
+              <button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchFilter.movie" (click)="searchFilter.movie=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          
+          <div class="filter-item col-12 col-md-4">
+            <mat-form-field appearance="outline" class="example-form-field-outline">
+              <mat-label>Descripción</mat-label>
+              <input matInput type="text" [(ngModel)]="searchFilter.description">
+              <button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchFilter.description" (click)="searchFilter.description=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          
+          <div class="filter-item col-12 col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Género</mat-label>
+                <mat-select [(ngModel)]="searchFilter.genre" multiple>
+                    <mat-option *ngFor="let genre of movieData.genres" [value]="genre">
+                      {{ genre }}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    
+    <div class="row mt-4">
+      <!-- Movie Card -->
+      <div class="col-12 col-md-6 col-lg-4 movie-card" *ngFor="let movie of filteredMovies()">
+        <div class="card movie-card-style">
+          <img [src]="movie.img" class="card-img-top movie-poster" alt="Póster de la película">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <p class="card-text">{{ movie.description }}</p>
+            <p class="card-text"><strong>Género:</strong> {{ movie.genre }}</p>
+            <a href="#" class="btn btn-primary btn-custom">Ver más</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
