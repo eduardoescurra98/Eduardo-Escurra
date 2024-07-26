@@ -6,7 +6,6 @@ export interface Movie {
     img:string;
   }
   
-  // Paso 2: Crear la interfaz para el JSON completo
   export interface MovieData {
     movies: Movie[];
     genres: string[];
